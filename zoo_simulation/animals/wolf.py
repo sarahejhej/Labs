@@ -3,6 +3,7 @@ from .carnivore import Carnivore
 
 
 class Wolf(Carnivore):
+    HOWM_ENERGY_COST = 10
     HUNT_CHANCE = 0.4
 
     def make_sound(self):
@@ -13,7 +14,7 @@ class Wolf(Carnivore):
         print(f"{self.name} hunts in a pack.")
 
     def howl(self):
-        self._change_energy(-10)
+        self._change_energy(-self.HOWM_ENERGY_COST)
         print(f"{self.name} howls at the moon!")
 
     def special_action(self, animals):

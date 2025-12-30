@@ -10,6 +10,7 @@ class Carnivore(Animal):
     MIN_ENERGY_TO_HUNT = 20
     HUNT_SUCCESS_CHANCE = 0.6
     MIN_PREY_COUNT = 2
+    PREY_ENERGY_LOSS = 85
 
     def eat(self, amount=MEAT_ENERGY_GAIN):
         super().eat(amount)
@@ -58,7 +59,7 @@ class Carnivore(Animal):
 
         print(f"{self.name} successfully hunts {prey.__class__.__name__.lower()}.")
 
-        prey._change_energy(-85)
+        prey._change_energy(-self.PREY_ENERGY_LOSS)
 
         if not prey.is_alive:
             print(f"{prey.name} has died from the hunt!")
@@ -70,16 +71,3 @@ class Carnivore(Animal):
     def __str__(self):
         base_string = super().__str__()
         return f'{base_string} and eats meat'
-
-
-# def special_action(self, animals):
-    #     """
-    #     Carnivore special action: randomly hunts, otherwise performs species special_action.
-    #     """
-    #     if random.random() < self.HUNT_CHANCE:
-    #         prey = self.select_prey(animals)
-    #         if prey:
-    #             self.hunt(prey)
-    #             return
-
-    #     super().special_action()
